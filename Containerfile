@@ -147,6 +147,11 @@ RUN rpm-ostree install $(curl https://api.github.com/repos/charmbracelet/vhs/rel
 # Install Charm gum 
 RUN rpm-ostree install $(curl https://api.github.com/repos/charmbracelet/gum/releases/latest | jq -r '.assets[] | select(.name| test(".*.x86_64.rpm$")).browser_download_url') 
 
+# Install NoMachine
+RUN wget curl https://download.nomachine.com/download/8.10/Linux/nomachine_8.10.1_1_x86_64.rpm && \
+    rpm-ostree install nomachine_8.10.1_1_x86_64.rpm && \
+    rm nomachine_8.10.1_1_x86_64.rpm
+
 # Set up services
 RUN systemctl enable podman.socket && \
     systemctl disable pmie.service && \
