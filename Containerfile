@@ -17,42 +17,42 @@ ARG BASE_IMAGE_NAME="${BASE_IMAGE_NAME}"
 ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION}"
 ARG PACKAGE_LIST="lutho"
 
-#COPY usr /usr
-#COPY just /tmp/just
-#COPY etc/yum.repos.d/ /etc/yum.repos.d/
-#COPY packages.json /tmp/packages.json
-#COPY build.sh /tmp/build.sh
-#COPY image-info.sh /tmp/image-info.sh
+COPY usr /usr
+COPY just /tmp/just
+COPY etc/yum.repos.d/ /etc/yum.repos.d/
+COPY packages.json /tmp/packages.json
+COPY build.sh /tmp/build.sh
+COPY image-info.sh /tmp/image-info.sh
 # Copy ublue-update.toml to tmp first, to avoid being overwritten.
-#COPY usr/etc/ublue-update/ublue-update.toml /tmp/ublue-update.toml
+COPY usr/etc/ublue-update/ublue-update.toml /tmp/ublue-update.toml
 
 # Add ublue kmods, add needed negativo17 repo and then immediately disable due to incompatibility with RPMFusion
-#COPY --from=ghcr.io/ublue-os/akmods:${AKMODS_FLAVOR}-${FEDORA_MAJOR_VERSION} /rpms /tmp/akmods-rpms
-#RUN sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/_copr_ublue-os-akmods.repo && \
-#    wget https://negativo17.org/repos/fedora-multimedia.repo -O /etc/yum.repos.d/negativo17-fedora-multimedia.repo && \
-#    if [[ "${FEDORA_MAJOR_VERSION}" -ge "39" ]]; then \
-#    	echo "Warning: skipped due to temporary issues with the Fedora 39 release!" \
-#    	# FIXME(ethanjli): re-enable this once it works again for Fedora 39
-#        #rpm-ostree install \
-#        #    /tmp/akmods-rpms/kmods/*xpadneo*.rpm \
-#        #    /tmp/akmods-rpms/kmods/*xpad-noone*.rpm \
-#        #    /tmp/akmods-rpms/kmods/*xone*.rpm \
-#        #    /tmp/akmods-rpms/kmods/*openrazer*.rpm \
-#        #    /tmp/akmods-rpms/kmods/*v4l2loopback*.rpm \
-#        #    /tmp/akmods-rpms/kmods/*wl*.rpm \
-#    ; fi && \
-#    # Don't install evdi on asus because of conflicts
-#    if grep -qv "asus" <<< "${AKMODS_FLAVOR}"; then \
-#        rpm-ostree install \
-#            /tmp/akmods-rpms/kmods/*evdi*.rpm \
-#    ; fi && \
-#    sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/negativo17-fedora-multimedia.repo
+COPY --from=ghcr.io/ublue-os/akmods:${AKMODS_FLAVOR}-${FEDORA_MAJOR_VERSION} /rpms /tmp/akmods-rpms
+RUN sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/_copr_ublue-os-akmods.repo && \
+    wget https://negativo17.org/repos/fedora-multimedia.repo -O /etc/yum.repos.d/negativo17-fedora-multimedia.repo && \
+    if [[ "${FEDORA_MAJOR_VERSION}" -ge "39" ]]; then \
+    	echo "Warning: skipped due to temporary issues with the Fedora 39 release!" \
+    	# FIXME(ethanjli): re-enable this once it works again for Fedora 39
+        #rpm-ostree install \
+        #    /tmp/akmods-rpms/kmods/*xpadneo*.rpm \
+        #    /tmp/akmods-rpms/kmods/*xpad-noone*.rpm \
+        #    /tmp/akmods-rpms/kmods/*xone*.rpm \
+        #    /tmp/akmods-rpms/kmods/*openrazer*.rpm \
+        #    /tmp/akmods-rpms/kmods/*v4l2loopback*.rpm \
+        #    /tmp/akmods-rpms/kmods/*wl*.rpm \
+    ; fi && \
+    # Don't install evdi on asus because of conflicts
+    if grep -qv "asus" <<< "${AKMODS_FLAVOR}"; then \
+        rpm-ostree install \
+            /tmp/akmods-rpms/kmods/*evdi*.rpm \
+    ; fi && \
+    sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/negativo17-fedora-multimedia.repo
 
 # Starship Shell Prompt
-#RUN curl -Lo /tmp/starship.tar.gz "https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz" && \
-#  tar -xzf /tmp/starship.tar.gz -C /tmp && \
-#  install -c -m 0755 /tmp/starship /usr/bin && \
-#  echo 'eval "$(starship init bash)"' >> /etc/bashrc
+RUN curl -Lo /tmp/starship.tar.gz "https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz" && \
+  tar -xzf /tmp/starship.tar.gz -C /tmp && \
+  install -c -m 0755 /tmp/starship /usr/bin && \
+  echo 'eval "$(starship init bash)"' >> /etc/bashrc
 
 #RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/bling/repo/fedora-$(rpm -E %fedora)/ublue-os-bling-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_ublue-os-bling.repo && \
 #    wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
