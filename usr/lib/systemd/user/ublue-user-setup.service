@@ -1,6 +1,6 @@
 [Unit]
 Description=Configure system for current user
-Wants=xdg-desktop-autostart.target
+Wants=app-bluefin\\x2dfirstboot@autostart.service
 
 [Service]
 Type=simple
