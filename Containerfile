@@ -54,10 +54,10 @@ RUN curl -Lo /tmp/starship.tar.gz "https://github.com/starship/starship/releases
   install -c -m 0755 /tmp/starship /usr/bin && \
   echo 'eval "$(starship init bash)"' >> /etc/bashrc
 
-#RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/bling/repo/fedora-$(rpm -E %fedora)/ublue-os-bling-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_ublue-os-bling.repo && \
-#    wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
-#    /tmp/build.sh && \
-#    /tmp/image-info.sh && \
+RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/bling/repo/fedora-$(rpm -E %fedora)/ublue-os-bling-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_ublue-os-bling.repo && \
+    wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
+    /tmp/build.sh && \
+    /tmp/image-info.sh && \
 #    pip install --prefix=/usr yafti && \
 ##    mkdir -p /usr/etc/flatpak/remotes.d && \
 #    wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d && \
@@ -83,10 +83,9 @@ RUN curl -Lo /tmp/starship.tar.gz "https://github.com/starship/starship/releases
 #    sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/system.conf && \
 #    sed -i '/^PRETTY_NAME/s/Kinoite/Lutho/' /usr/lib/os-release && \
 #    rm -rf /tmp/* /var/* && \
-#    ostree container commit && \
-#    mkdir -p /var/tmp && \
-#    chmod -R 1777 /var/tmp
-    RUN ostree container commit
+    ostree container commit && \
+    mkdir -p /var/tmp && \
+    chmod -R 1777 /var/tmp
 
 ## lutho-dx developer edition image section
 FROM lutho AS lutho-dx
