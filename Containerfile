@@ -70,18 +70,18 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/bling/repo/fedora-$(rp
     systemctl enable ublue-system-flatpak-manager.service && \
     systemctl --global enable ublue-user-flatpak-manager.service && \
 #    systemctl --global enable ublue-user-setup.service && \
-#    fc-cache -f /usr/share/fonts/ubuntu && \
-#    fc-cache -f /usr/share/fonts/inter && \
-#    find /tmp/just -iname '*.just' -exec printf "\n\n" \; -exec cat {} \; >> /usr/share/ublue-os/just/60-custom.just && \
-#    rm -f /etc/yum.repos.d/tailscale.repo && \
-#    rm -f /etc/yum.repos.d/_copr_ublue-os-bling.repo && \
-#    rm -f /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
-#    rm -f /usr/share/applications/fish.desktop && \
-#    rm -f /usr/share/applications/htop.desktop && \
-#    rm -f /usr/share/applications/nvtop.desktop && \
-#    sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/user.conf && \
-#    sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/system.conf && \
-#    sed -i '/^PRETTY_NAME/s/Kinoite/Lutho/' /usr/lib/os-release && \
+    fc-cache -f /usr/share/fonts/ubuntu && \
+    fc-cache -f /usr/share/fonts/inter && \
+    find /tmp/just -iname '*.just' -exec printf "\n\n" \; -exec cat {} \; >> /usr/share/ublue-os/just/60-custom.just && \
+    rm -f /etc/yum.repos.d/tailscale.repo && \
+    rm -f /etc/yum.repos.d/_copr_ublue-os-bling.repo && \
+    rm -f /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
+    rm -f /usr/share/applications/fish.desktop && \
+    rm -f /usr/share/applications/htop.desktop && \
+    rm -f /usr/share/applications/nvtop.desktop && \
+    sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/user.conf && \
+    sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/system.conf && \
+    sed -i '/^PRETTY_NAME/s/Kinoite/Lutho/' /usr/lib/os-release && \
     rm -rf /tmp/* /var/* && \
     ostree container commit && \
     mkdir -p /var/tmp && \
@@ -98,69 +98,68 @@ ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION}"
 ARG PACKAGE_LIST="lutho-dx"
 
 # dx specific files come from the dx directory in this repo
-#COPY dx/usr /usr
-#COPY dx/etc/yum.repos.d/ /etc/yum.repos.d/
-#COPY workarounds.sh \
-#     packages.json \
-#     build.sh \
-#     image-info.sh \
-#    /tmp
+COPY dx/usr /usr
+COPY dx/etc/yum.repos.d/ /etc/yum.repos.d/
+COPY workarounds.sh \
+     packages.json \
+     build.sh \
+     image-info.sh \
+    /tmp
 
 # Apply IP Forwarding before installing Docker to prevent messing with LXC networking
-#RUN sysctl -p
+RUN sysctl -p
 
-#RUN wget https://copr.fedorainfracloud.org/coprs/ganto/lxc4/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ganto-lxc4-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/ganto-lxc4-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
-#    wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo
+RUN wget https://copr.fedorainfracloud.org/coprs/ganto/lxc4/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ganto-lxc4-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/ganto-lxc4-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
+    wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo
 
 # Handle packages via packages.json
-#RUN /tmp/build.sh && \
-#    /tmp/image-info.sh
+RUN /tmp/build.sh && \
+    /tmp/image-info.sh
 
-#RUN wget https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -O /tmp/docker-compose && \
-#    install -c -m 0755 /tmp/docker-compose /usr/bin
+RUN wget https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -O /tmp/docker-compose && \
+    install -c -m 0755 /tmp/docker-compose /usr/bin
 
-#COPY --from=cgr.dev/chainguard/flux:latest /usr/bin/flux /usr/bin/flux
-#COPY --from=cgr.dev/chainguard/helm:latest /usr/bin/helm /usr/bin/helm
-#COPY --from=cgr.dev/chainguard/ko:latest /usr/bin/ko /usr/bin/ko
-#COPY --from=cgr.dev/chainguard/minio-client:latest /usr/bin/mc /usr/bin/mc
-#COPY --from=cgr.dev/chainguard/kubectl:latest /usr/bin/kubectl /usr/bin/kubectl
+COPY --from=cgr.dev/chainguard/flux:latest /usr/bin/flux /usr/bin/flux
+COPY --from=cgr.dev/chainguard/helm:latest /usr/bin/helm /usr/bin/helm
+COPY --from=cgr.dev/chainguard/ko:latest /usr/bin/ko /usr/bin/ko
+COPY --from=cgr.dev/chainguard/minio-client:latest /usr/bin/mc /usr/bin/mc
+COPY --from=cgr.dev/chainguard/kubectl:latest /usr/bin/kubectl /usr/bin/kubectl
 
-#RUN curl -Lo ./kind "https://github.com/kubernetes-sigs/kind/releases/latest/download/kind-$(uname)-amd64" && \
-#    chmod +x ./kind && \
-#    mv ./kind /usr/bin/kind
+RUN curl -Lo ./kind "https://github.com/kubernetes-sigs/kind/releases/latest/download/kind-$(uname)-amd64" && \
+    chmod +x ./kind && \
+    mv ./kind /usr/bin/kind
 
 # Install DevPod
-#RUN rpm-ostree install https://github.com/loft-sh/devpod/releases/download/v0.3.7/DevPod_linux_x86_64.rpm && \
-#    wget https://github.com/loft-sh/devpod/releases/download/v0.3.7/devpod-linux-amd64 -O /tmp/devpod && \
-#    install -c -m 0755 /tmp/devpod /usr/bin
+RUN rpm-ostree install https://github.com/loft-sh/devpod/releases/download/v0.3.7/DevPod_linux_x86_64.rpm && \
+    wget https://github.com/loft-sh/devpod/releases/download/v0.3.7/devpod-linux-amd64 -O /tmp/devpod && \
+    install -c -m 0755 /tmp/devpod /usr/bin
 
 # Install kns/kctx and add completions for Bash
-#RUN wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx -O /usr/bin/kubectx && \
-#    wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubens -O /usr/bin/kubens && \
-#    chmod +x /usr/bin/kubectx /usr/bin/kubens
+RUN wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx -O /usr/bin/kubectx && \
+    wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubens -O /usr/bin/kubens && \
+    chmod +x /usr/bin/kubectx /usr/bin/kubens
 
 # Install Charm VHS & dependencies
-#RUN rpm-ostree install $(curl https://api.github.com/repos/charmbracelet/vhs/releases/latest | jq -r '.assets[] | select(.name| test(".*.x86_64.rpm$")).browser_download_url') && \
-#    wget https://github.com/tsl0922/ttyd/releases/latest/download/ttyd.x86_64 -O /tmp/ttyd && \
-#    install -c -m 0755 /tmp/ttyd /usr/bin/ttyd
+RUN rpm-ostree install $(curl https://api.github.com/repos/charmbracelet/vhs/releases/latest | jq -r '.assets[] | select(.name| test(".*.x86_64.rpm$")).browser_download_url') && \
+    wget https://github.com/tsl0922/ttyd/releases/latest/download/ttyd.x86_64 -O /tmp/ttyd && \
+    install -c -m 0755 /tmp/ttyd /usr/bin/ttyd
 
 # Install Charm gum 
-#RUN rpm-ostree install $(curl https://api.github.com/repos/charmbracelet/gum/releases/latest | jq -r '.assets[] | select(.name| test(".*.x86_64.rpm$")).browser_download_url') 
+RUN rpm-ostree install $(curl https://api.github.com/repos/charmbracelet/gum/releases/latest | jq -r '.assets[] | select(.name| test(".*.x86_64.rpm$")).browser_download_url') 
 
 # Set up services
-#RUN systemctl enable podman.socket && \
-#    systemctl disable pmie.service && \
-#    systemctl disable pmlogger.service
+RUN systemctl enable podman.socket && \
+    systemctl disable pmie.service && \
+    systemctl disable pmlogger.service
 
-#RUN /tmp/workarounds.sh
+RUN /tmp/workarounds.sh
 
 # Clean up repos, everything is on the image so we don't need them
-#RUN rm -f /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
-#    rm -f /etc/yum.repos.d/ganto-lxc4-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
-#    rm -f /etc/yum.repos.d/vscode.repo && \
-#    rm -f /etc/yum.repos.d/docker-ce.repo && \
-#    rm -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:phracek:PyCharm.repo && \
-#    rm -f /etc/yum.repos.d/fedora-cisco-openh264.repo && \
-#    rm -rf /tmp/* /var/* && \
-#    ostree container commit
-RUN ostree container commit
+RUN rm -f /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
+    rm -f /etc/yum.repos.d/ganto-lxc4-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
+    rm -f /etc/yum.repos.d/vscode.repo && \
+    rm -f /etc/yum.repos.d/docker-ce.repo && \
+    rm -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:phracek:PyCharm.repo && \
+    rm -f /etc/yum.repos.d/fedora-cisco-openh264.repo && \
+    rm -rf /tmp/* /var/* && \
+    ostree container commit
