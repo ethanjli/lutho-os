@@ -1,6 +1,5 @@
 [Unit]
 Description=Configure system for current user
-Requires=app-bluefin\x2dfirstboot@autostart.service
 
 [Service]
 Type=simple
