@@ -1,6 +1,7 @@
 [Unit]
 Description=Configure system for current user
-#Requires=xdg-desktop-autostart.target
+Requires=xdg-desktop-autostart.target
+After=xdg-desktop-autostart.target
 
 [Service]
 Type=simple
