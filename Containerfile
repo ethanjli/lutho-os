@@ -69,7 +69,8 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/bling/repo/fedora-$(rp
     systemctl enable ublue-system-setup.service && \
     systemctl enable ublue-system-flatpak-manager.service && \
     systemctl --global enable ublue-user-flatpak-manager.service && \
-    systemctl --global enable ublue-user-setup.service && \
+    # FIXME(ethanjli): this service appears to be needed for ublue, but it breaks xdg-desktop-portal functionality in Flatpak apps and (probably?) causes various programs to crash.
+    # systemctl --global enable ublue-user-setup.service && \
     fc-cache -f /usr/share/fonts/ubuntu && \
     fc-cache -f /usr/share/fonts/inter && \
     find /tmp/just -iname '*.just' -exec printf "\n\n" \; -exec cat {} \; >> /usr/share/ublue-os/just/60-custom.just && \
