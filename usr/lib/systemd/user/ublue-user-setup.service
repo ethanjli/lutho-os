@@ -9,10 +9,10 @@ Description=Configure system for current user
 #Requires=app-input\x2dremapper\x2dautoload@autostart.service
 #Requires=app-kaccess@autostart.service
 #Requires=app-klipper@autostart.service
-
 #Requires=app-orca\x2dautostart@autostart.service
 #Requires=app-org.kde.discover.notifier@autostart.service
-Requires=app-org.kde.kdeconnect.daemon@autostart.service
+
+#Requires=app-org.kde.kdeconnect.daemon@autostart.service
 Requires=app-org.kde.plasma\x2dwelcome@autostart.service
 
 #Requires=app-spice\x2dvdagent@autostart.service
