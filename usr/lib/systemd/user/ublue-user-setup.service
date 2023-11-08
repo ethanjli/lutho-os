@@ -1,15 +1,15 @@
 [Unit]
 Description=Configure system for current user
-Requires=app-at\x2dspi\x2ddbus\x2dbus@autostart.service
-Requires=app-bluefin\x2dfirstboot@autostart.service
-Requires=app-com.github.zocker_160.SyncThingy@autostart.service
-Requires=app-geoclue\x2ddemo\x2dagent@autostart.service
-Requires=app-gnome\x2dinitial\x2dsetup\x2dfirst\x2dlogin@autostart.service
-Requires=app-gnome\x2dkeyring\x2dpkcs11@autostart.service
-Requires=app-gnome\x2dkeyring\x2dsecrets@autostart.service
-Requires=app-gnome\x2dkeyring\x2dssh@autostart.service
-Requires=app-input\x2dremapper\x2dautoload@autostart.service
-Requires=app-orca\x2dautostart@autostart.service
+#Requires=app-at\x2dspi\x2ddbus\x2dbus@autostart.service
+#Requires=app-bluefin\x2dfirstboot@autostart.service
+#Requires=app-com.github.zocker_160.SyncThingy@autostart.service
+#Requires=app-geoclue\x2ddemo\x2dagent@autostart.service
+#Requires=app-gnome\x2dinitial\x2dsetup\x2dfirst\x2dlogin@autostart.service
+#Requires=app-gnome\x2dkeyring\x2dpkcs11@autostart.service
+#Requires=app-gnome\x2dkeyring\x2dsecrets@autostart.service
+#Requires=app-gnome\x2dkeyring\x2dssh@autostart.service
+#Requires=app-input\x2dremapper\x2dautoload@autostart.service
+#Requires=app-orca\x2dautostart@autostart.service
 Requires=app-org.gnome.Evolution\x2dalarm\x2dnotify@autostart.service
 Requires=app-org.gnome.SettingsDaemon.DiskUtilityNotify@autostart.service
 Requires=app-org.gnome.Software@autostart.service
