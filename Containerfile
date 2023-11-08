@@ -58,31 +58,31 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/bling/repo/fedora-$(rp
     wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     /tmp/build.sh && \
     /tmp/image-info.sh && \
-#    pip install --prefix=/usr yafti && \
-##    mkdir -p /usr/etc/flatpak/remotes.d && \
-#    wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d && \
-#    cp /tmp/ublue-update.toml /usr/etc/ublue-update/ublue-update.toml && \
-#    systemctl enable rpm-ostree-countme.service && \
-#    systemctl enable tailscaled.service && \
-#    systemctl enable dconf-update.service && \
-#    systemctl enable ublue-update.timer && \
-#    systemctl enable ublue-system-setup.service && \
-#    systemctl enable ublue-system-flatpak-manager.service && \
-#    systemctl --global enable ublue-user-flatpak-manager.service && \
-#    systemctl --global enable ublue-user-setup.service && \
-#    fc-cache -f /usr/share/fonts/ubuntu && \
-#    fc-cache -f /usr/share/fonts/inter && \
-#    find /tmp/just -iname '*.just' -exec printf "\n\n" \; -exec cat {} \; >> /usr/share/ublue-os/just/60-custom.just && \
-#    rm -f /etc/yum.repos.d/tailscale.repo && \
-#    rm -f /etc/yum.repos.d/_copr_ublue-os-bling.repo && \
-#    rm -f /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
-#    rm -f /usr/share/applications/fish.desktop && \
-#    rm -f /usr/share/applications/htop.desktop && \
-#    rm -f /usr/share/applications/nvtop.desktop && \
+    pip install --prefix=/usr yafti && \
+    mkdir -p /usr/etc/flatpak/remotes.d && \
+    wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d && \
+    cp /tmp/ublue-update.toml /usr/etc/ublue-update/ublue-update.toml && \
+    systemctl enable rpm-ostree-countme.service && \
+    systemctl enable tailscaled.service && \
+    systemctl enable dconf-update.service && \
+    systemctl enable ublue-update.timer && \
+    systemctl enable ublue-system-setup.service && \
+    systemctl enable ublue-system-flatpak-manager.service && \
+    systemctl --global enable ublue-user-flatpak-manager.service && \
+    systemctl --global enable ublue-user-setup.service && \
+    fc-cache -f /usr/share/fonts/ubuntu && \
+    fc-cache -f /usr/share/fonts/inter && \
+    find /tmp/just -iname '*.just' -exec printf "\n\n" \; -exec cat {} \; >> /usr/share/ublue-os/just/60-custom.just && \
+    rm -f /etc/yum.repos.d/tailscale.repo && \
+    rm -f /etc/yum.repos.d/_copr_ublue-os-bling.repo && \
+    rm -f /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
+    rm -f /usr/share/applications/fish.desktop && \
+    rm -f /usr/share/applications/htop.desktop && \
+    rm -f /usr/share/applications/nvtop.desktop && \
 #    sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/user.conf && \
 #    sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/system.conf && \
 #    sed -i '/^PRETTY_NAME/s/Kinoite/Lutho/' /usr/lib/os-release && \
-#    rm -rf /tmp/* /var/* && \
+    rm -rf /tmp/* /var/* && \
     ostree container commit && \
     mkdir -p /var/tmp && \
     chmod -R 1777 /var/tmp
