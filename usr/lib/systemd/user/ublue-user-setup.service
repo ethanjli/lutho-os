@@ -2,8 +2,8 @@
 Description=Configure system for current user
 Requires=app-at\x2dspi\x2ddbus\x2dbus@autostart.service
 
-#Requires=app-bluefin\x2dfirstboot@autostart.service
-Requires=app-com.github.zocker_160.SyncThingy@autostart.service
+Requires=app-bluefin\x2dfirstboot@autostart.service
+#Requires=app-com.github.zocker_160.SyncThingy@autostart.service
 
 Requires=app-geoclue\x2ddemo\x2dagent@autostart.service
 Requires=app-gnome\x2dinitial\x2dsetup\x2dfirst\x2dlogin@autostart.service
