@@ -87,6 +87,9 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/bling/repo/fedora-$(rp
     mkdir -p /var/tmp && \
     chmod -R 1777 /var/tmp
 
+# Use deep sleep by default instead of s2idle
+RUN rpm-ostree kargs --append='mem_sleep_default=deep'
+
 ## lutho-dx developer edition image section
 FROM lutho AS lutho-dx
 
