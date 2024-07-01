@@ -198,10 +198,11 @@ jobs:
                 BUILD_TAGS+=("latest")
                 echo "DEFAULT_TAG=latest" >> $GITHUB_ENV
             elif [[ "$IS_GTS_VERSION" == "true" ]]; then
-                  BUILD_TAGS+=("gts")
-                  echo "DEFAULT_TAG=gts" >> $GITHUB_ENV
+                BUILD_TAGS+=("gts")
+                echo "DEFAULT_TAG=gts" >> $GITHUB_ENV
             elif [[ "$IS_COREOS" == "true" ]]; then
-                  echo "DEFAULT_TAG=stable" >> $GITHUB_ENV
+                BUILD_TAGS+=("stable")
+                echo "DEFAULT_TAG=stable" >> $GITHUB_ENV
             fi
           fi
 
