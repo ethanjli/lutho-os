@@ -1,4 +1,4 @@
-name: build-lutho-stable
+name: build-lutho-latest
 on:
   merge_group:
   pull_request:

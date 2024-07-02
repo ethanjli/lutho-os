@@ -1,4 +1,4 @@
-name: build-lutho-stable-iso
+name: build-lutho-latest-iso
 on:
   workflow_dispatch:
   workflow_call:
