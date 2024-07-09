@@ -12,3 +12,6 @@ rpm-ostree install \
   acpica-tools \
   kio-fuse \
   /tmp/opentabletdriver.rpm
+
+# install zerotier
+curl -s https://install.zerotier.com | sudo bash
