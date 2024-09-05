@@ -73,7 +73,7 @@ jobs:
         shell: bash
         run: |
           set -eo pipefail
-          kernel_release=$(skopeo inspect docker://ghcr.io/ublue-os/${{ env.IMAGE_NAME }}:${{ inputs.fedora_version }} | jq -r '.Labels["ostree.linux"] | split(".x86_64")[0]')
+          kernel_release=$(skopeo inspect docker://ghcr.io/ublue-os/${{ inputs.base_name }}:${{ inputs.fedora_version }} | jq -r '.Labels["ostree.linux"] | split(".x86_64")[0]')
           fedora_version=$(echo $kernel_release | grep -oP 'fc\K[0-9]+')
           echo "kernel_release=$kernel_release" >> $GITHUB_OUTPUT
           echo "fedora_version=$fedora_version" >> $GITHUB_OUTPUT
