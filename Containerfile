@@ -7,6 +7,7 @@ ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION:-stable}"
 FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION}
 
 COPY build.sh /tmp/build.sh
+COPY install-zerotier.sh /tmp/install-zerotier.sh
 RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
     mv /var/lib/alternatives /staged-alternatives && \
