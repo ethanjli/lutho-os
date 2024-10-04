@@ -13,6 +13,6 @@ rpm-ostree install \
 
 # install zerotier
 # note: the install script exits with error 1 when it realized that systemd isn't running.
-cp /usr/etc/os-release /etc/os-release # the zerotier installer script checks /etc/os-release, which doesn't exist
+cp /usr/lib/os-release /etc/os-release # the zerotier installer script checks /etc/os-release, which doesn't exist
 curl -s https://install.zerotier.com | (sudo bash || echo "We assume that ZeroTier has installed successfully!")
 rm /etc/os-release
