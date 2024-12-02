@@ -8,7 +8,6 @@ FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION}
 
 COPY build.sh /tmp/build.sh
 COPY install-zerotier.sh /tmp/install-zerotier.sh
-COPY huion-kamvas-13.tablet /usr/share/libwacom/huion-kamvas-13.tablet
 RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
     mv /var/lib/alternatives /staged-alternatives && \
