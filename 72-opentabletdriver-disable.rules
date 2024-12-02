@@ -1,0 +1,54 @@
+# OpenTabletDriver udev rules (https://github.com/OpenTabletDriver/OpenTabletDriver)
+KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess", TAG+="udev-acl"
+KERNEL=="js[0-9]*", SUBSYSTEM=="input", ATTRS{name}=="OpenTabletDriver Virtual Tablet", RUN+="/usr/bin/env rm %E{DEVNAME}"
+# Artisul A1201
+# Gaomon 1060 Pro
+# Gaomon GM116HD
+# Gaomon GM156HD
+# Gaomon M106K Pro
+# Gaomon M10K Pro
+# Gaomon M1220
+# Gaomon M1230
+# Gaomon M6
+# Gaomon PD1161
+# Gaomon PD156 Pro
+# Gaomon PD1561
+# Gaomon S56K
+# Gaomon S620
+# Gaomon S630
+# Gaomon S830
+# Huion GC610
+# Huion H1060P
+# Huion H1161
+# Huion H320M
+# Huion H420X
+# Huion H430P
+# Huion H610 Pro
+# Huion H610 Pro V2
+# Huion H610X
+# Huion H640P
+# Huion H642
+# Huion H950P
+# Huion HC16
+# Huion HS610
+# Huion HS611
+# Huion HS64
+# Huion HS95
+# Huion Kamvas 12
+# Huion Kamvas 13
+# Huion Kamvas 16
+# Huion Kamvas 16 (2021)
+# Huion Kamvas 22
+# Huion Kamvas 22 Plus
+# Huion Kamvas 24 Plus
+# Huion Kamvas Pro 13
+# Huion Kamvas Pro 13 (2.5k)
+# Huion Kamvas Pro 16
+# Huion Kamvas Pro 16 (2.5k)
+# Huion Kamvas Pro 24 (4K)
+# Huion New 1060 Plus
+# Huion Q11K
+# Huion Q620M
+# Huion RDS-160
+# Huion RTM-500
+SUBSYSTEM=="input", ATTRS{idVendor}=="256c", ATTRS{idProduct}=="006d", ENV{LIBINPUT_IGNORE_DEVICE}="0"

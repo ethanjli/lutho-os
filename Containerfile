@@ -8,6 +8,7 @@ FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION}
 
 COPY build.sh /tmp/build.sh
 COPY install-zerotier.sh /tmp/install-zerotier.sh
+COPY 72-opentabletdriver-disable.rules /usr/lib/udev/rules.d/72-opentabletdriver-disable.rules
 RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
     mv /var/lib/alternatives /staged-alternatives && \
