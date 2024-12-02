@@ -6,13 +6,12 @@ This image is a layer of minor customizations over [Aurora](https://github.com/N
 
 > Lutho: patron of Haan; god of fishermen, divination, mathematics, and knowledge; his pawi is the sea turtle.
 
-## Usage
+## Setup
 
-I use the `ghcr.io/ethanjli/lutho-dx:39` image, e.g. with the following `rpm-ostree` commands:
+I use the `ghcr.io/ethanjli/lutho-dx:stable` image, e.g. with the following `bootc` commands on a fresh installation of [Aurora](https://getaurora.dev/):
 
 ```
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/ethanjli/lutho-dx:39
-rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ethanjli/lutho-dx:39
+bootc switch ghcr.io/ethanjli/lutho-dx:stable
 ```
 
 ## Scope
