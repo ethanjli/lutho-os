@@ -10,6 +10,7 @@ COPY build.sh /tmp/build.sh
 COPY install-zerotier.sh /tmp/install-zerotier.sh
 COPY 20-suspend-fixes.rules /usr/lib/udev/rules.d/20-suspend-fixes.rules
 COPY 72-opentabletdriver-disable.rules /usr/lib/udev/rules.d/72-opentabletdriver-disable.rules
+COPY logind.conf /usr/lib/systemd/logind.conf
 RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
     mv /var/lib/alternatives /staged-alternatives && \
