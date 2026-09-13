@@ -8,7 +8,7 @@ ZT_BASE_URL_HTTP='http://download.zerotier.com/'
 
 rm -f /tmp/zt-gpg-key
 echo '-----BEGIN PGP PUBLIC KEY BLOCK-----' >/tmp/zt-gpg-key
-cat >>/tmp/zt-gpg-key << END_OF_KEY
+cat >>/tmp/zt-gpg-key <<END_OF_KEY
 Comment: GPGTools - https://gpgtools.org
 
 mQINBFdQq7oBEADEVhyRiaL8dEjMPlI/idO8tA7adjhfvejxrJ3Axxi9YIuIKhWU
@@ -66,14 +66,14 @@ echo '*** Detecting Linux Distribution'
 echo
 
 if [ ! -f /etc/os-release ]; then
-	echo '*** Cannot detect Linux distribution! Aborting.'
-	exit 1
+  echo '*** Cannot detect Linux distribution! Aborting.'
+  exit 1
 fi
 
 source /etc/os-release
 
-fedora_release="`cat /etc/os-release | grep -F VERSION_ID= | cut -d = -f 2`"
-if [ -n "$fedora_release" ]; then
+fedora_release="$(cat /etc/os-release | grep -F VERSION_ID= | cut -d = -f 2)"
+if [ "$fedora_release" != "" ]; then
   baseurl="${ZT_BASE_URL_HTTP}redhat/fc/$fedora_release"
 else
   baseurl="${ZT_BASE_URL_HTTP}redhat/fc/22"
@@ -95,17 +95,17 @@ chgrp 0 /etc/yum.repos.d/zerotier.repo
 echo
 echo '*** Installing ZeroTier service package...'
 
-rpm-ostree install zerotier-one
+dnf5 install -y zerotier-one
 
 rm -f /tmp/zt-gpg-key
 
 if [ ! -e /usr/sbin/zerotier-one ]; then
-	echo
-	echo '*** Package installation failed! Unfortunately there may not be a package'
-	echo '*** for your architecture or distribution. For the source go to:'
-	echo '*** https://github.com/zerotier/ZeroTierOne'
-	echo
-	exit 1
+  echo
+  echo '*** Package installation failed! Unfortunately there may not be a package'
+  echo '*** for your architecture or distribution. For the source go to:'
+  echo '*** https://github.com/zerotier/ZeroTierOne'
+  echo
+  exit 1
 fi
 
 exit 0

@@ -2,16 +2,16 @@
 
 set -ouex pipefail
 
-rpm-ostree install acpica-tools
+dnf5 install -y acpica-tools
 
 # Better remote filesystem support:
-rpm-ostree install kio-fuse
+dnf5 install -y kio-fuse
 
 # Smart card support for Yubico Authenticator:
-rpm-ostree install pcsc-lite
+dnf5 install -y pcsc-lite
 
 # Calendar integration (they didn't work via Flatpak):
-rpm-ostree install \
+dnf5 install -y \
   merkuro kdepim-addons kdepim-runtime \
   qt6-qtlocation # required dependency for merkuro
 
