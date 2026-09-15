@@ -13,8 +13,8 @@ RUN \
     --mount=type=tmpfs,dst=/tmp \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
-    --mount=type=bind,from=ctx,source=build.sh,target=/tmp/build.sh \
-    --mount=type=bind,from=ctx,source=install-zerotier.sh,target=/tmp/install-zerotier.sh \
+    --mount=type=bind,source=build.sh,target=/tmp/build.sh \
+    --mount=type=bind,source=install-zerotier.sh,target=/tmp/install-zerotier.sh \
     /tmp/build.sh
 
 RUN bootc container lint
