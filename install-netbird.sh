@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo tee /etc/yum.repos.d/netbird.repo <<EOF
+tee /etc/yum.repos.d/netbird.repo <<EOF
 [netbird]
 name=netbird
 baseurl=https://pkgs.netbird.io/yum/
@@ -10,7 +10,7 @@ repo_gpgcheck=1
 EOF
 
 # from https://discussion.fedoraproject.org/t/fedora-bootc-how-to-install-netbird/196331/3
-sudo tee /etc/systemd/system/netbird.service <<EOF
+tee /etc/systemd/system/netbird.service <<EOF
 [Unit]
 Description=NetBird mesh network client
 ConditionFileIsExecutable=/usr/bin/netbird
