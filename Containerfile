@@ -15,6 +15,7 @@ RUN \
     --mount=type=cache,dst=/var/log \
     --mount=type=bind,source=build.sh,target=/tmp/build.sh \
     --mount=type=bind,source=install-zerotier.sh,target=/tmp/install-zerotier.sh \
+    --mount=type=bind,source=install-netbird.sh,target=/tmp/install-netbird.sh \
     /tmp/build.sh
 
 RUN bootc container lint

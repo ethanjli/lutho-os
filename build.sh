@@ -17,3 +17,6 @@ dnf5 install -y \
 
 # install zerotier
 /tmp/install-zerotier.sh
+
+# install netbird
+/tmp/install-netbird.sh
